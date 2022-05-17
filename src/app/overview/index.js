@@ -10,7 +10,7 @@ import { CashIcon, ClipboardIcon as ClipboardOutlineIcon } from '@heroicons/reac
 function Overview() {
 
 
-    const { data, loading, error } = useQuery(GET_OVERVIEW)
+    const { data, loading, error } = useQuery(GET_OVERVIEW, { pollInterval: 1000 })
 
 
     return (
@@ -24,7 +24,7 @@ function Overview() {
                 <div>
 
 
-                    <div tour='welcome' className='grid grid-cols-1 xl:grid-cols-2 gap-16 lg:gap-8 xl:gap-16'>
+                    <div tour='welcome' className='grid grid-cols-1  gap-16 lg:gap-8 xl:gap-16'>
                         <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
                         <Stat
                                 helpText='The date coming from the RTC module'
