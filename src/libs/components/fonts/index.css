@@ -1,0 +1,8 @@
+@font-face{
+    font-family: 'baloo';
+    src: url(./BalooBhaina2-SemiBold.ttf);
+}
+
+.logo-text{
+    font-family: 'baloo';
+}

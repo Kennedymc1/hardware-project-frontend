@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, useRef, useState } from 'react'
+import Auth from 'libs/components/auth'
+import Loading from 'libs/components/loading'
+import { Route, Switch } from 'react-router'
+import { getSubDomain } from 'libs/utils/urlUtil'
 
-function App() {
+
+const AuthProvider = React.lazy(() => import('libs/auth-react/components/auth-provider'))
+
+const Dashboard = React.lazy(() => import('app/dashboard'))
+const Landing = React.lazy(() => import('app/landing'))
+
+
+
+const port = 4000
+const productionServerUrl = 'https://hardware-lab-1.herokuapp.com/graphql'
+
+export default function App() {
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+   
+      <Switch>
+        <Route path='/'>
+          <Auth
+            authProvider={<AuthProvider
+              port={port}
+              productionServerUrl={productionServerUrl}
+            />}
+            landingComponent={<Landing />}
+            dashboardComponent={<Dashboard />}
+            logo={<img className={'h-16 w-16 p-2'} alt='' />}
+          />
+        </Route>
 
-export default App;
+      </Switch>
+
+  )
+}
