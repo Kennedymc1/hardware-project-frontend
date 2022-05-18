@@ -10,3 +10,11 @@ query{
   }
 }
 `
+
+export const GET_RECORDS = gql`
+query{
+  records{
+    data
+  }
+}
+`
