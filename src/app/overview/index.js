@@ -7,6 +7,7 @@ import { UserGroupIcon, UsersIcon } from '@heroicons/react/solid'
 import { CashIcon, ClipboardIcon as ClipboardOutlineIcon } from '@heroicons/react/outline'
 import Card from 'libs/components/card'
 import Item from './item'
+import History from './history'
 
 
 function Overview() {
@@ -14,7 +15,6 @@ function Overview() {
 
     const { data, loading, error } = useQuery(GET_OVERVIEW, { pollInterval: 3000 })
 
-    const { data: recordsData, loading: recordsLoading, error: recordsError } = useQuery(GET_RECORDS, { pollInterval: 3000 })
 
 
 
@@ -76,26 +76,8 @@ function Overview() {
                 }
             </ContentController>
 
-
-            <ContentController
-                loading={recordsLoading}
-                error={recordsError}
-                data={recordsData}
-            >
-
-                <Card tailwind={"mt-8"}>
-                    {recordsData &&
-                        recordsData.records.map(({ data }, index) => (
-                            <Item
-                                data={data}
-                                isGray={index % 2 === 0}
-                            />
-                        ))
-                    }
-
-                </Card>
-
-            </ContentController>
+                <History />
+           
 
         </div>
     )
