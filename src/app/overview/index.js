@@ -12,9 +12,9 @@ import Item from './item'
 function Overview() {
 
 
-    const { data, loading, error } = useQuery(GET_OVERVIEW, { pollInterval: 1000 })
+    const { data, loading, error } = useQuery(GET_OVERVIEW, { pollInterval: 3000 })
 
-    const { data: recordsData, loading: recordsLoading, error: recordsError } = useQuery(GET_RECORDS, { pollInterval: 5000 })
+    const { data: recordsData, loading: recordsLoading, error: recordsError } = useQuery(GET_RECORDS, { pollInterval: 3000 })
 
 
 
