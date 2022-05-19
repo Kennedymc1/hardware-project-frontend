@@ -18,3 +18,13 @@ query{
   }
 }
 `
+
+export const GET_CHARTS = gql`
+query{
+  charts{
+    humidity,
+    temperature,
+    time
+  }
+}
+`

@@ -1,12 +1,11 @@
 import React from 'react'
 import Stat from 'libs/components/stat'
 import { useQuery } from '@apollo/client'
-import { GET_OVERVIEW, GET_RECORDS } from './constants/GqlQueries'
+import { GET_CHARTS, GET_OVERVIEW, GET_RECORDS } from './constants/GqlQueries'
 import ContentController from 'libs/components/content-controller'
 import { UserGroupIcon, UsersIcon } from '@heroicons/react/solid'
 import { CashIcon, ClipboardIcon as ClipboardOutlineIcon } from '@heroicons/react/outline'
-import Card from 'libs/components/card'
-import Item from './item'
+import { Line } from 'react-chartjs-2';
 import History from './history'
 
 
@@ -14,6 +13,8 @@ function Overview() {
 
 
     const { data, loading, error } = useQuery(GET_OVERVIEW, { pollInterval: 3000 })
+    const { data: chartData, loading: chartLoading, error: chartError } = useQuery(GET_CHARTS, { pollInterval: 5000 })
+
 
 
 
@@ -76,8 +77,57 @@ function Overview() {
                 }
             </ContentController>
 
-                <History />
-           
+
+            <ContentController
+                loading={chartLoading}
+                error={chartError}
+                data={chartData}
+            >
+
+                {chartData &&
+                    <div>
+
+                        <div className='mt-8'>
+
+                            <Line
+                                datasetIdKey='id'
+                                data={{
+                                    labels: chartData.charts.time,
+                                    datasets: [
+                                        {
+                                            id: 1,
+                                            label: 'Humidity',
+                                            data: chartData.charts.humidity,
+                                        },
+                                    ],
+                                }}
+                            />
+                        </div>
+
+                        <div className='mt-8'>
+
+                            <Line
+                                datasetIdKey='id'
+                                data={{
+                                    labels: chartData.charts.time,
+                                    datasets: [
+                                        {
+                                            id: 1,
+                                            label: 'Temperature',
+                                            data: chartData.charts.temperature,
+                                        },
+                                    ],
+                                }}
+                            />
+                        </div>
+
+                    </div>
+                }
+            </ContentController>
+
+
+            <History />
+
 
         </div>
     )
