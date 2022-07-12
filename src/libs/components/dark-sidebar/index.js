@@ -132,7 +132,7 @@ const DarkSidebar = ({ testid, navItems, logo, profile, children, onHelp, onLogo
                                     <img
                                         className="p-2 h-16"
                                         src={logo}
-                                        alt="Logo"
+
                                     />
                                 </div>
                                 <nav className="mt-5 px-2 space-y-1">
@@ -196,7 +196,7 @@ const DarkSidebar = ({ testid, navItems, logo, profile, children, onHelp, onLogo
                                 <img
                                     className="p-2 h-16"
                                     src={logo}
-                                    alt="Logo"
+
                                 />
                             </div>
                             <nav className="mt-5 flex-1 px-2 bg-gray-800 space-y-1">

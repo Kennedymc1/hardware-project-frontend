@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import PropTypes from 'prop-types'
-import { HomeIcon } from '@heroicons/react/solid'
+import { HomeIcon, ViewListIcon } from '@heroicons/react/solid'
 import useAuth from 'libs/auth-react/hooks/useAuth'
 import { signout } from 'libs/auth-react/utils/authUtil'
 import { refreshWebpage } from 'libs/utils/urlUtil'
@@ -9,6 +9,8 @@ import { Route, Switch } from 'react-router-dom'
 import DarkDualBar from 'libs/dark-dualbar'
 import ContentController from 'libs/components/content-controller'
 import Overview from 'app/overview'
+import Entries from 'app/entries'
+import ViewEntry from 'app/entries/view'
 
 
 
@@ -17,6 +19,12 @@ const navItems = [
         href: '/',
         name: 'Overview',
         icon: HomeIcon
+    },
+
+    {
+        href: '/entries',
+        name: 'Entries',
+        icon: ViewListIcon
     }
 ]
 
@@ -45,9 +53,15 @@ function Dashboard(props) {
             >
 
                 <Route exact path='/'>
-                    <Suspense fallback={<Loading screen />}>
-                        <Overview />
-                    </Suspense>
+                    <Overview />
+                </Route>
+
+                <Route exact path='/entries'>
+                    <Entries />
+                </Route>
+
+                <Route exact path='/view-entry'>
+                    <ViewEntry />
                 </Route>
 
             </DarkDualBar>
