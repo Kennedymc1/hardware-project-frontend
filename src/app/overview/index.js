@@ -1,7 +1,7 @@
 import React from 'react'
 import Stat from 'libs/components/stat'
 import { useQuery } from '@apollo/client'
-import { GET_STATS } from './constants/GqlQueries'
+import { GET_STATS, GET_MILLIS } from './constants/GqlQueries'
 import ContentController from 'libs/components/content-controller'
 import { UserGroupIcon, UsersIcon } from '@heroicons/react/solid'
 import { CashIcon, ClipboardIcon as ClipboardOutlineIcon } from '@heroicons/react/outline'
@@ -13,24 +13,34 @@ function Overview() {
 
     const { data, loading, error } = useQuery(GET_STATS)
 
+    const { data: millisData, loading: millisLoading, error: millisError } = useQuery(GET_MILLIS, { pollInterval: 1000 })
 
 
+    console.log({ millisData, millisError, millisLoading })
 
 
     return (
         <div>
             <ContentController
-                loading={loading}
-                error={error}
-                data={data}
+                loading={loading || millisLoading}
+                error={error || millisError}
+                data={data && millisData}
             >
 
-                {data &&
-                    <div>
+                {data && millisData &&
+                    < div >
 
 
                         <div tour='welcome' className='grid grid-cols-1  gap-16 lg:gap-8 xl:gap-16'>
                             <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-1 sm:p-8 md:p-16 lg:p-24">
+                                <Stat
+                                    helpText='Used for the purpose of testing, shows the milliseconds that are on the raspberry pi'
+                                    bg='bg-yellow-600'
+                                    title='Raspberry Pi Milliseconds'
+                                    value={millisData.time[0].data}
+                                    icon={<ClipboardOutlineIcon />}
+                                />
+
                                 <Stat
                                     helpText='The number of people entered today'
                                     bg='bg-yellow-600'
@@ -73,7 +83,7 @@ function Overview() {
 
                     </div>
                 }
-            </ContentController>
+            </ContentController >
 
             {/* 
             <ContentController
@@ -127,7 +137,7 @@ function Overview() {
             <History /> */}
 
 
-        </div>
+        </div >
     )
 }
 

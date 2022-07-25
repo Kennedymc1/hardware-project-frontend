@@ -10,3 +10,12 @@ query{
   }
 }
 `
+
+
+export const GET_MILLIS = gql`
+query{
+  time{
+    data
+  }
+}
+`
