@@ -19,3 +19,13 @@ query{
   }
 }
 `
+
+export const GET_IMAGE = gql`
+query{
+  image{
+    name
+    data
+    contentType
+  }
+}
+`

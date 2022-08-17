@@ -1,11 +1,12 @@
 import React from 'react'
 import Stat from 'libs/components/stat'
 import { useQuery } from '@apollo/client'
-import { GET_STATS, GET_MILLIS } from './constants/GqlQueries'
+import { GET_STATS, GET_MILLIS, GET_IMAGE } from './constants/GqlQueries'
 import ContentController from 'libs/components/content-controller'
 import { UserGroupIcon, UsersIcon } from '@heroicons/react/solid'
 import { CashIcon, ClipboardIcon as ClipboardOutlineIcon } from '@heroicons/react/outline'
 import { Line } from 'react-chartjs-2';
+import FilePreview from 'libs/components/file-preview'
 
 
 function Overview() {
@@ -14,6 +15,7 @@ function Overview() {
     const { data, loading, error } = useQuery(GET_STATS)
 
     const { data: millisData, loading: millisLoading, error: millisError } = useQuery(GET_MILLIS, { pollInterval: 1000 })
+    const { data: imageData, loading: imageLoading, error: imageError } = useQuery(GET_IMAGE)
 
 
     console.log({ millisData, millisError, millisLoading })
@@ -31,6 +33,18 @@ function Overview() {
                     < div >
 
 
+                        <ContentController
+                            loading={imageLoading}
+                            data={imageData}
+                            error={imageError}
+                        >
+
+                            {imageData &&
+                                <img src={"data:image/png;base64, "+imageData.image.data} className={`w-72 h-72 object-cover relative rounded shodow-md border border-gray-100 `} />
+
+
+                            }
+                        </ContentController>
                         <div tour='welcome' className='grid grid-cols-1  gap-16 lg:gap-8 xl:gap-16'>
                             <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-1 sm:p-8 md:p-16 lg:p-24">
                                 <Stat
