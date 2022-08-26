@@ -32,7 +32,7 @@ function ViewEntry(props) {
 
                     <div customcontent className='flex p-12 w-full items-center justify-center '>
 
-                        <img src={"data:image/png;base64, " + entryData.image.data} className={`w-96  rounded-md object-cover relative rounded shodow-md border border-gray-100 `} />
+                        <img src={"data:image/png;base64, " + entryData.entry.image.data} className={`w-96  rounded-md object-cover relative rounded shodow-md border border-gray-100 `} />
 
                     </div>
                 </DescriptionList>
