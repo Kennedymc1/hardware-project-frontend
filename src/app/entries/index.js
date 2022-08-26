@@ -1,7 +1,7 @@
 import React from 'react'
 import Stat from 'libs/components/stat'
 import { useQuery } from '@apollo/client'
-import { GET_STATS } from './constants/GqlQueries'
+import { GET_ENTRIES } from './constants/GqlQueries'
 import ContentController from 'libs/components/content-controller'
 import { UserGroupIcon, UsersIcon } from '@heroicons/react/solid'
 import { CashIcon, ClipboardIcon as ClipboardOutlineIcon } from '@heroicons/react/outline'
@@ -15,7 +15,7 @@ import Text from 'libs/components/text'
 function Entries() {
 
 
-    const { data, loading, error } = useQuery(GET_STATS)
+    const { data, loading, error } = useQuery(GET_ENTRIES)
 
     const history = useHistory()
     const location = useLocation()

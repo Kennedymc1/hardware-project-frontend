@@ -3,16 +3,43 @@ import PropTypes from 'prop-types'
 import DescriptionList from 'libs/components/description-list'
 import DescItem from 'libs/components/description-list/desc-item'
 import sample from 'images/sample.jpg'
+import { GET_ENTRY } from '../constants/GqlQueries'
+import { useLazyQuery, useQuery } from '@apollo/client'
+import ContentController from 'libs/components/content-controller'
+import useSearchParam from 'app/hooks/useSearchParam'
 
 function ViewEntry(props) {
-    return (
-        <DescriptionList heading="Entry Snapshot">
-            <DescItem title="Date and time of Entry" content={"16 April, 2022  16:45"} />
 
-            <div customcontent className='flex p-12 w-full items-center justify-center '>
-                <img src={sample} className="w-96  rounded-md " />
-            </div>
-        </DescriptionList>
+    const [getEntry, { data: entryData, loading: entryLoading, error: entryError }] = useLazyQuery(GET_ENTRY)
+
+    useSearchParam('id', id => {
+        getEntry({
+            variables: {
+                id
+            }
+        })
+    })
+
+    return (
+        <ContentController
+            data={entryData}
+            loading={entryLoading}
+            error={entryError}
+        >
+            {entryData &&
+                <DescriptionList heading="Entry Snapshot">
+                    <DescItem title="Date and time of Entry" content={entryData.entry.time} />
+
+                    <div customcontent className='flex p-12 w-full items-center justify-center '>
+
+                        <img src={"data:image/png;base64, " + entryData.image.data} className={`w-96  rounded-md object-cover relative rounded shodow-md border border-gray-100 `} />
+
+                    </div>
+                </DescriptionList>
+
+
+            }
+        </ContentController>
     )
 }
 

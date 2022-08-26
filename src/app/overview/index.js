@@ -14,47 +14,21 @@ function Overview() {
 
     const { data, loading, error } = useQuery(GET_STATS)
 
-    const { data: millisData, loading: millisLoading, error: millisError } = useQuery(GET_MILLIS, { pollInterval: 1000 })
-    const { data: imageData, loading: imageLoading, error: imageError } = useQuery(GET_IMAGE)
-
-
-    console.log({ millisData, millisError, millisLoading })
 
 
     return (
         <div>
             <ContentController
-                loading={loading || millisLoading}
-                error={error || millisError}
-                data={data && millisData}
+                loading={loading}
+                error={error}
+                data={data}
             >
 
-                {data && millisData &&
+                {data &&
                     < div >
 
-
-                        <ContentController
-                            loading={imageLoading}
-                            data={imageData}
-                            error={imageError}
-                        >
-
-                            {imageData &&
-                                <img src={"data:image/png;base64, "+imageData.image.data} className={`w-72 h-72 object-cover relative rounded shodow-md border border-gray-100 `} />
-
-
-                            }
-                        </ContentController>
                         <div tour='welcome' className='grid grid-cols-1  gap-16 lg:gap-8 xl:gap-16'>
                             <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-1 sm:p-8 md:p-16 lg:p-24">
-                                <Stat
-                                    helpText='Used for the purpose of testing, shows the milliseconds that are on the raspberry pi'
-                                    bg='bg-yellow-600'
-                                    title='Raspberry Pi Milliseconds'
-                                    value={millisData.time[0].data}
-                                    icon={<ClipboardOutlineIcon />}
-                                />
-
                                 <Stat
                                     helpText='The number of people entered today'
                                     bg='bg-yellow-600'
@@ -86,69 +60,11 @@ function Overview() {
                                     value={data.stats.people30Days}
                                     icon={<CashIcon />}
                                 />
-
-
-
                             </dl>
-
-
                         </div>
-
-
                     </div>
                 }
             </ContentController >
-
-            {/* 
-            <ContentController
-                loading={chartLoading}
-                error={chartError}
-                data={chartData}
-            >
-
-                {chartData &&
-                    <div>
-
-                        <div className='mt-8'>
-
-                            <Line
-                                datasetIdKey='id'
-                                data={{
-                                    labels: chartData.charts.time,
-                                    datasets: [
-                                        {
-                                            id: 1,
-                                            label: 'Humidity',
-                                            data: chartData.charts.humidity,
-                                        },
-                                    ],
-                                }}
-                            />
-                        </div>
-
-                        <div className='mt-8'>
-
-                            <Line
-                                datasetIdKey='id'
-                                data={{
-                                    labels: chartData.charts.time,
-                                    datasets: [
-                                        {
-                                            id: 1,
-                                            label: 'Temperature',
-                                            data: chartData.charts.temperature,
-                                        },
-                                    ],
-                                }}
-                            />
-                        </div>
-
-                    </div>
-                }
-            </ContentController>
-
-
-            <History /> */}
 
 
         </div >
