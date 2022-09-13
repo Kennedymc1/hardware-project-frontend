@@ -6,7 +6,7 @@ import Text from 'libs/components/text'
 
 
 
-function Item({ isGray, onClick, _id, time, index }) {
+function Item({ isGray, onClick, _id, time,index }) {
 
 console.log({_id})
 

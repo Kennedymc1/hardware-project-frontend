@@ -13,6 +13,7 @@ export const GET_ENTRY = gql`
 query($id: String){
   entry(id: $id){
     time
+    temperature
     image{
       name
       data

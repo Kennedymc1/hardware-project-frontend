@@ -28,7 +28,9 @@ function ViewEntry(props) {
         >
             {entryData &&
                 <DescriptionList heading="Entry Snapshot">
+                    
                     <DescItem title="Date and time of Entry" content={entryData.entry.time} />
+                    <DescItem title="Temperature of Person" content={`${entryData.entry.temperature} degrees celcius`} />
 
                     <div customcontent className='flex p-12 w-full items-center justify-center '>
 
