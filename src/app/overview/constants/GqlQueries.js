@@ -11,6 +11,13 @@ query{
 }
 `
 
+export const GET_CUSTOM_RANGE = gql`
+query($fromDate: String, $toDate: String){
+  customRange(fromDate: $fromDate, toDate: $toDate)
+}
+`
+
+
 
 export const GET_MILLIS = gql`
 query{

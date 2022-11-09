@@ -13,7 +13,7 @@ const Landing = React.lazy(() => import('app/landing'))
 
 
 const port = 4000
-const productionServerUrl = 'https://hardware-lab-1.herokuapp.com/graphql'
+const productionServerUrl = 'https://project.dirtservers.com/base/graphql'
 
 export default function App() {
 

@@ -36,7 +36,7 @@ function Entries() {
                 (
                     <CardWrapper minWidth="6rem" tailwind="pb-1">
                         <div
-                            className={`grid grid-cols-2  py-4 px-2 md:px-6 border-b border-gray-200`}
+                            className={`grid grid-cols-3  py-4 px-2 md:px-6 border-b border-gray-200`}
                         >
                             <Text
                             >
