@@ -25,11 +25,7 @@ query($id: String){
     banned
     time
     temperature
-    image{
-      name
-      data
-      contentType
-    }
+    image
   }
 }
 `
