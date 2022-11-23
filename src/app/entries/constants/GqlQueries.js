@@ -1,10 +1,13 @@
 import { gql } from '@apollo/client'
 
 export const GET_ENTRIES = gql`
-query{
-  entries{
+query($fromDate: String, $toDate: String){
+  entries(fromDate: $fromDate, toDate: $toDate){
     _id
     time
+    age 
+    gender
+    image
     banned
   }
 }

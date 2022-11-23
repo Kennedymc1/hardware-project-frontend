@@ -29,11 +29,11 @@ const navItems = [
         icon: ViewListIcon
     },
 
-    {
-        href: '/debug',
-        name: 'Debug',
-        icon: StatusOfflineIcon
-    },
+    // {
+    //     href: '/debug',
+    //     name: 'Debug',
+    //     icon: StatusOfflineIcon
+    // },
 
     {
         href: '/settings',
